@@ -25,29 +25,28 @@ class _SignUpState extends State<SignUp> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
-            appBar: AppBar(
-              backgroundColor: Colors.brown[400],
-              elevation: 0.0,
-              title: Text('Sign up to Brew Crew'),
-              actions: <Widget>[
-                FlatButton.icon(
-                  icon: Icon(Icons.person),
-                  label: Text('Sign In'),
-                  onPressed: () => widget.toggleView(),
-                ),
-              ],
-            ),
+            backgroundColor: Colors.blue,
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    SizedBox(height: 20.0),
+                    Center(
+                      child: Text(
+                        'Complaints App',
+                        style: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 40.0),
                     TextFormField(
                       decoration: InputDecoration(
-                          hintText: 'email',
+                          hintText: 'Email',
                           fillColor: Colors.white,
                           filled: true,
                           contentPadding: EdgeInsets.all(12.0),
@@ -64,10 +63,10 @@ class _SignUpState extends State<SignUp> {
                         setState(() => email = val);
                       },
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 15.0),
                     TextFormField(
                       decoration: InputDecoration(
-                          hintText: 'password',
+                          hintText: 'Password',
                           fillColor: Colors.white,
                           filled: true,
                           contentPadding: EdgeInsets.all(12.0),
@@ -87,11 +86,11 @@ class _SignUpState extends State<SignUp> {
                         setState(() => password = val);
                       },
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 15.0),
                     RaisedButton(
                         color: Colors.pink[400],
                         child: Text(
-                          'Register',
+                          'Sign Up',
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () async {
@@ -107,11 +106,20 @@ class _SignUpState extends State<SignUp> {
                             }
                           }
                         }),
-                    SizedBox(height: 12.0),
+                    SizedBox(height: 15.0),
                     Text(
                       error,
                       style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    )
+                    ),
+                    SizedBox(height: 15.0),
+                    FlatButton(
+                      //  icon: Icon(Icons.person),
+                      child: Text(
+                        'Already have an Account? Sign In',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () => widget.toggleView(),
+                    ),
                   ],
                 ),
               ),
