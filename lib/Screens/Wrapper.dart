@@ -1,0 +1,16 @@
+import 'package:complaints_app/Screens/Authentication/Auth.dart';
+import 'package:complaints_app/Screens/Home/Home.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:complaints_app/Models/User.dart';
+
+class Wrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+
+    //final user = 'NEBSYE4FwxdrDBpYycozuIjoHiI2';
+    return user == null ? Auth() : HomeComplaints();
+    //return HomeComplaints();
+  }
+}

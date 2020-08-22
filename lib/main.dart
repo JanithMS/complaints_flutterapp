@@ -1,4 +1,27 @@
+import 'package:complaints_app/Models/User.dart';
+// import 'package:complaints_app/Screens/Home/Home.dart';
+import 'package:complaints_app/Screens/Wrapper.dart';
+import 'package:complaints_app/Services/AuthService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<User>.value(
+        value: AuthServices().user,
+        child: MaterialApp(
+          home: Wrapper(),
+        ));
+  }
+}
+
+/*import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
@@ -115,3 +138,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
