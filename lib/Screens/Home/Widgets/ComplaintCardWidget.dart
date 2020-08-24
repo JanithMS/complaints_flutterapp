@@ -28,13 +28,11 @@ class ComplaintsWidget extends StatelessWidget {
           Column(
             children: [
               Text('$title',
-                  overflow: TextOverflow.clip,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0,
                       color: Colors.black)),
-              Text('$description',
-                  overflow: TextOverflow.clip, style: TextStyle(fontSize: 15.0))
+              Text('$description', style: TextStyle(fontSize: 15.0))
             ],
           ),
         ],

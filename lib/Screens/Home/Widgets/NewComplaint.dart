@@ -14,6 +14,17 @@ class NewComplaint extends StatefulWidget {
 }
 
 class _NewComplaintState extends State<NewComplaint> {
+  final nameHolder1 = TextEditingController();
+  final nameHolder2 = TextEditingController();
+
+  clearTextInput1() {
+    nameHolder1.clear();
+  }
+
+  clearTextInput2() {
+    nameHolder2.clear();
+  }
+
   final picker = ImagePicker();
   File _image;
   final _formKey = GlobalKey<FormState>();
@@ -34,6 +45,7 @@ class _NewComplaintState extends State<NewComplaint> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextFormField(
+                  controller: nameHolder1,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter the Title';
@@ -56,6 +68,7 @@ class _NewComplaintState extends State<NewComplaint> {
                   height: 10.0,
                 ),
                 TextFormField(
+                  controller: nameHolder2,
                   maxLines: 4,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -82,6 +95,9 @@ class _NewComplaintState extends State<NewComplaint> {
                     ? FlatButton.icon(
                         onPressed: () {
                           getImage();
+                          setState(() {
+                            _error = '';
+                          });
                         },
                         label: Text('Add Image'),
                         icon: Icon(Icons.add_a_photo),
@@ -121,16 +137,23 @@ class _NewComplaintState extends State<NewComplaint> {
                 RaisedButton(
                   color: Colors.pink,
                   onPressed: () {
-                    if (_image != null && _formKey.currentState.validate()) {
-                      widget.complaintsClass.add(ComplaintsClass(
-                          title: _title,
-                          description: _description,
-                          image: _image));
-                      widget.refresh();
-                    } else if (_image == null) {
-                      setState(() {
-                        _error = 'Add Image';
-                      });
+                    if (_formKey.currentState.validate()) {
+                      if (_image != null) {
+                        widget.complaintsClass.add(ComplaintsClass(
+                            title: _title,
+                            description: _description,
+                            image: _image));
+                        widget.refresh();
+                        setState(() {
+                          _image = null;
+                          clearTextInput1();
+                          clearTextInput2();
+                        });
+                      } else {
+                        setState(() {
+                          _error = 'Add Image';
+                        });
+                      }
                     }
                   },
                   child: Text(
