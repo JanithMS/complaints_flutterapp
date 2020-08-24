@@ -121,15 +121,13 @@ class _NewComplaintState extends State<NewComplaint> {
                 RaisedButton(
                   color: Colors.pink,
                   onPressed: () {
-                    if (_image != null) {
-                      if (_formKey.currentState.validate()) {
-                        widget.complaintsClass.add(ComplaintsClass(
-                            title: _title,
-                            description: _description,
-                            image: _image));
-                        widget.refresh();
-                      }
-                    } else {
+                    if (_image != null && _formKey.currentState.validate()) {
+                      widget.complaintsClass.add(ComplaintsClass(
+                          title: _title,
+                          description: _description,
+                          image: _image));
+                      widget.refresh();
+                    } else if (_image == null) {
                       setState(() {
                         _error = 'Add Image';
                       });

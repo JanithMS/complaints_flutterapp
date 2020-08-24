@@ -17,20 +17,26 @@ class ComplaintsWidget extends StatelessWidget {
       //height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0), color: Colors.blue[200]),
-      child: Column(
+      child: Row(
         children: [
-          Text(
-            '$title',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                color: Colors.black),
+          Container(
+              width: 80.0,
+              child: FittedBox(fit: BoxFit.fitWidth, child: Image.file(image))),
+          SizedBox(
+            width: 10.0,
           ),
-          Text(
-            '$description',
-            style: TextStyle(fontSize: 15.0),
+          Column(
+            children: [
+              Text('$title',
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                      color: Colors.black)),
+              Text('$description',
+                  overflow: TextOverflow.clip, style: TextStyle(fontSize: 15.0))
+            ],
           ),
-          Image.file(image)
         ],
       ),
     );
