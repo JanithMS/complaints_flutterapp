@@ -44,7 +44,7 @@ class _MyComplaintsState extends State<MyComplaints> {
             children: <Widget>[
               Expanded(
                 child: ListView(
-                    padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 0.0),
                     scrollDirection: Axis.vertical,
                     children: List.generate(
                       widget.complaintsClass.length,

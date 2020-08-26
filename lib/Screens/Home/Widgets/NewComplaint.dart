@@ -2,6 +2,7 @@ import 'dart:io';
 
 // import 'package:complaints_app/Screens/Home/Widgets/MyComplaints.dart';
 import 'package:complaints_app/Models/ComplaintClass.dart';
+import 'package:complaints_app/Utility/ImageConvert.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -27,6 +28,7 @@ class _NewComplaintState extends State<NewComplaint> {
 
   final picker = ImagePicker();
   File _image;
+  String _img;
   final _formKey = GlobalKey<FormState>();
   String _title;
   String _description;
@@ -142,7 +144,7 @@ class _NewComplaintState extends State<NewComplaint> {
                         widget.complaintsClass.add(ComplaintsClass(
                             title: _title,
                             description: _description,
-                            image: _image));
+                            image: _img));
                         widget.refresh();
                         setState(() {
                           _image = null;
@@ -172,5 +174,6 @@ class _NewComplaintState extends State<NewComplaint> {
     setState(() {
       _image = File(pickedFile.path);
     });
+    _img = Utility.base64String(_image.readAsBytesSync());
   }
 }
