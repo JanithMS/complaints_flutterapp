@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class MyComplaints extends StatefulWidget {
   final List<ComplaintsClass> complaintsClass;
-  MyComplaints({this.complaintsClass});
+  final Function refresh;
+  MyComplaints({this.complaintsClass, this.refresh});
   @override
   _MyComplaintsState createState() => _MyComplaintsState();
 }
@@ -19,12 +20,31 @@ class _MyComplaintsState extends State<MyComplaints> {
   Widget build(BuildContext context) {
     return widget.complaintsClass.length == 0
         ? Center(
-            child: Text(
-            'No Complaints',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.pink,
-                fontSize: 20.0),
+            child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'No Complaints',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.pink,
+                    fontSize: 25.0),
+              ),
+              Text(
+                'Move to New Complaint Screen to Add a Complaint',
+                style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    color: Colors.pink,
+                    fontSize: 10.0),
+              ),
+              Text(
+                'Long Press the Complaint in My Complaints Screen to Delete Complaint',
+                style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    color: Colors.pink,
+                    fontSize: 10.0),
+              ),
+            ],
           ))
         : Column(
             children: <Widget>[
@@ -42,6 +62,10 @@ class _MyComplaintsState extends State<MyComplaints> {
                           description:
                               widget.complaintsClass[index].description,
                           image: widget.complaintsClass[index].image,
+                          delete: () {
+                            widget.complaintsClass.removeAt(index);
+                            widget.refresh();
+                          },
                           //image: _image
                         );
                       },

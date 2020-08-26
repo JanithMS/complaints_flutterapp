@@ -72,6 +72,7 @@ class _HomeComplaintsState extends State<HomeComplaints> {
                 controller: pageController,
                 children: <Widget>[
                   MyComplaints(
+                    refresh: refresh,
                     complaintsClass: _complaintsClass,
                   ),
                   NewComplaint(
