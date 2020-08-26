@@ -32,17 +32,11 @@ class _MyComplaintsState extends State<MyComplaints> {
               ),
               Text(
                 'Move to New Complaint Screen to Add a Complaint',
-                style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    color: Colors.pink,
-                    fontSize: 10.0),
+                style: TextStyle(color: Colors.pink, fontSize: 10.0),
               ),
               Text(
                 'Long Press the Complaint in My Complaints Screen to Delete Complaint',
-                style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    color: Colors.pink,
-                    fontSize: 10.0),
+                style: TextStyle(color: Colors.pink, fontSize: 10.0),
               ),
             ],
           ))
@@ -55,8 +49,6 @@ class _MyComplaintsState extends State<MyComplaints> {
                     children: List.generate(
                       widget.complaintsClass.length,
                       (index) {
-                        //print('${widget.complaintsClass[index].title}');
-                        //print('${widget.complaintsClass[index].description}');
                         return ComplaintsWidget(
                           title: widget.complaintsClass[index].title,
                           description:
@@ -66,7 +58,6 @@ class _MyComplaintsState extends State<MyComplaints> {
                             widget.complaintsClass.removeAt(index);
                             widget.refresh();
                           },
-                          //image: _image
                         );
                       },
                     )),

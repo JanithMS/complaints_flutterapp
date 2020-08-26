@@ -17,7 +17,6 @@ class ComplaintsWidget extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(bottom: 10.0),
         padding: EdgeInsets.all(10.0),
-        //height: 100.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0), color: Colors.blue[200]),
         child: Row(

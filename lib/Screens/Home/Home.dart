@@ -39,7 +39,6 @@ class _HomeComplaintsState extends State<HomeComplaints> {
         currentPage = pageController.page;
       });
     });
-    //print('$_complaintsClass.title');
     return Container(
       child: Scaffold(
         backgroundColor: Colors.blue[50],

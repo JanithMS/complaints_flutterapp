@@ -44,7 +44,6 @@ class _SignInState extends State<SignIn> {
                     SizedBox(
                       height: 40.0,
                     ),
-                    // SizedBox(height: 15.0),
                     TextFormField(
                       decoration: InputDecoration(
                           hintText: 'Email',
@@ -115,7 +114,6 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 15.0),
                     FlatButton(
-                      //icon: Icon(Icons.person),
                       child: Text(
                         'New User? Sign Up',
                         style: TextStyle(color: Colors.white),
