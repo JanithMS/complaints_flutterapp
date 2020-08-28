@@ -1,4 +1,3 @@
-import 'package:complaints_app/Models/ComplaintClass.dart';
 import 'package:complaints_app/Screens/Home/Widgets/CustomButton.dart';
 import 'package:complaints_app/Screens/Home/Widgets/MyComplaints.dart';
 import 'package:complaints_app/Screens/Home/Widgets/NewComplaint.dart';
@@ -6,6 +5,8 @@ import 'package:complaints_app/Services/AuthService.dart';
 import 'package:flutter/material.dart';
 
 class HomeComplaints extends StatefulWidget {
+  final String userID;
+  HomeComplaints({this.userID});
   final AuthServices _auth = AuthServices();
   @override
   _HomeComplaintsState createState() => _HomeComplaintsState();
@@ -14,8 +15,6 @@ class HomeComplaints extends StatefulWidget {
 class _HomeComplaintsState extends State<HomeComplaints> {
   PageController pageController = PageController();
   double currentPage;
-
-  List<ComplaintsClass> _complaintsClass;
 
   void refresh() {
     setState(() {
@@ -29,7 +28,6 @@ class _HomeComplaintsState extends State<HomeComplaints> {
     super.initState();
     currentPage = 0.0;
     pageController = PageController(initialPage: currentPage.toInt());
-    _complaintsClass = [];
   }
 
   @override
@@ -39,6 +37,7 @@ class _HomeComplaintsState extends State<HomeComplaints> {
         currentPage = pageController.page;
       });
     });
+    //print('Home: ID found this is : ${widget.userID}');
     return Container(
       child: Scaffold(
         backgroundColor: Colors.blue[50],
@@ -70,14 +69,8 @@ class _HomeComplaintsState extends State<HomeComplaints> {
               child: PageView(
                 controller: pageController,
                 children: <Widget>[
-                  MyComplaints(
-                    refresh: refresh,
-                    complaintsClass: _complaintsClass,
-                  ),
-                  NewComplaint(
-                    refresh: refresh,
-                    complaintsClass: _complaintsClass,
-                  )
+                  MyComplaints(userID: widget.userID),
+                  NewComplaint(refresh: refresh, userID: widget.userID)
                 ],
               ),
             ),

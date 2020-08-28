@@ -7,8 +7,12 @@ import 'package:complaints_app/Models/User.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<RegistrationUser>(context);
 
-    return user == null ? Auth() : HomeComplaints();
+    return user == null
+        ? Auth()
+        : HomeComplaints(
+            userID: user.uid,
+          );
   }
 }

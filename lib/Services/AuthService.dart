@@ -1,19 +1,21 @@
 import 'package:complaints_app/Models/User.dart';
-import 'package:complaints_app/Services/Database.dart';
+// import 'package:complaints_app/Services/Database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
 class AuthServices {
+  // FirebaseApp _app = Firebase.initializeApp();
   //create an instance
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   //getting userId
-  User _getUserFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+  RegistrationUser _getUserFromFirebaseUser(User user) {
+    return user != null ? RegistrationUser(uid: user.uid) : null;
   }
 
   // auth change user stream
-  Stream<User> get user {
-    return _firebaseAuth.onAuthStateChanged.map(_getUserFromFirebaseUser);
+  Stream<RegistrationUser> get user {
+    return _firebaseAuth.authStateChanges().map(_getUserFromFirebaseUser);
   }
 
   //signIn
@@ -21,7 +23,7 @@ class AuthServices {
     try {
       dynamic result = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser user = result.user;
+      User user = result.user;
       return _getUserFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -32,11 +34,9 @@ class AuthServices {
   //signUp
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
-      AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      FirebaseUser user = result.user;
-      await DatabaseService(uid: user.uid)
-          .updateUserData('0', 'new crew member', '');
+      UserCredential result = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User user = result.user;
       return _getUserFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());

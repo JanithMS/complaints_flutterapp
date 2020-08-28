@@ -1,29 +1,25 @@
 import 'dart:io';
-
-// import 'package:complaints_app/Screens/Home/Widgets/MyComplaints.dart';
 import 'package:complaints_app/Models/ComplaintClass.dart';
+import 'package:complaints_app/Services/Database.dart';
 import 'package:complaints_app/Utility/ImageConvert.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class NewComplaint extends StatefulWidget {
-  final List<ComplaintsClass> complaintsClass;
   final Function refresh;
-  NewComplaint({this.refresh, this.complaintsClass});
+  final String userID;
+  NewComplaint({this.refresh, this.userID});
   @override
   _NewComplaintState createState() => _NewComplaintState();
 }
 
 class _NewComplaintState extends State<NewComplaint> {
-  final nameHolder1 = TextEditingController();
-  final nameHolder2 = TextEditingController();
+  final titleHolder = TextEditingController();
+  final descriptionHolder = TextEditingController();
 
-  clearTextInput1() {
-    nameHolder1.clear();
-  }
-
-  clearTextInput2() {
-    nameHolder2.clear();
+  clearTextInput() {
+    titleHolder.clear();
+    descriptionHolder.clear();
   }
 
   final picker = ImagePicker();
@@ -33,9 +29,10 @@ class _NewComplaintState extends State<NewComplaint> {
   String _title;
   String _description;
   String _error = '';
-
+  ComplaintsClass _complaintsClass = ComplaintsClass('', '', '');
   @override
   Widget build(BuildContext context) {
+    //print('New Complaint: ID found this is : ${widget.userID}');
     return SingleChildScrollView(
       child: Center(
           child: Container(
@@ -47,7 +44,7 @@ class _NewComplaintState extends State<NewComplaint> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextFormField(
-                  controller: nameHolder1,
+                  controller: titleHolder,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter the Title';
@@ -70,7 +67,7 @@ class _NewComplaintState extends State<NewComplaint> {
                   height: 10.0,
                 ),
                 TextFormField(
-                  controller: nameHolder2,
+                  controller: descriptionHolder,
                   maxLines: 4,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -141,15 +138,16 @@ class _NewComplaintState extends State<NewComplaint> {
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       if (_image != null) {
-                        widget.complaintsClass.add(ComplaintsClass(
-                            title: _title,
-                            description: _description,
-                            image: _img));
+                        _complaintsClass.title = _title;
+                        _complaintsClass.description = _description;
+                        _complaintsClass.image = _img;
+                        DatabaseService databaseService = DatabaseService(
+                            widget.userID, _complaintsClass.toMap());
+                        databaseService.addComplaint();
                         widget.refresh();
                         setState(() {
                           _image = null;
-                          clearTextInput1();
-                          clearTextInput2();
+                          clearTextInput();
                         });
                       } else {
                         setState(() {

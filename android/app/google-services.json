@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "968873557929",
-    "firebase_url": "https://complaint-app-cf6ec.firebaseio.com",
-    "project_id": "complaint-app-cf6ec",
-    "storage_bucket": "complaint-app-cf6ec.appspot.com"
+    "project_number": "814157754392",
+    "firebase_url": "https://cfi-complaints-app-ecb79.firebaseio.com",
+    "project_id": "cfi-complaints-app-ecb79",
+    "storage_bucket": "cfi-complaints-app-ecb79.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:968873557929:android:4b6347aa3a4435a7bc4eb8",
+        "mobilesdk_app_id": "1:814157754392:android:1f0a04ffc7a6f5e2a5d36d",
         "android_client_info": {
           "package_name": "com.janith_ms.complaints_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "968873557929-fmqk2bg3jv55fr70edu88jd80511kbvr.apps.googleusercontent.com",
+          "client_id": "814157754392-harcuiov0o4qvcrip3dc3gpcb76o8n1d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDK75LJZSPjOm3Uuin4JIEUiEKWCZaEgTQ"
+          "current_key": "AIzaSyCOTsk3HHLcmoGsy3n03uNkt6EgEx6qHNs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "968873557929-fmqk2bg3jv55fr70edu88jd80511kbvr.apps.googleusercontent.com",
+              "client_id": "814157754392-harcuiov0o4qvcrip3dc3gpcb76o8n1d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
