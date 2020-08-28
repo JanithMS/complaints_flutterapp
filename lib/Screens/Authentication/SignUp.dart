@@ -36,7 +36,7 @@ class _SignUpState extends State<SignUp> {
                     children: <Widget>[
                       Center(
                         child: Text(
-                          'Complaints App',
+                          'CFI Complaints App',
                           style: TextStyle(
                               fontSize: 30.0,
                               color: Colors.white,

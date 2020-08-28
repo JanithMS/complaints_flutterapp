@@ -42,7 +42,7 @@ class _HomeComplaintsState extends State<HomeComplaints> {
       child: Scaffold(
         backgroundColor: Colors.blue[50],
         appBar: AppBar(
-          title: Text('Complaints App'),
+          title: Text('CFI Complaints App'),
           backgroundColor: Colors.blue,
           elevation: 0.0,
           actions: <Widget>[
