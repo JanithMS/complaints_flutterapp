@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:complaints_app/Models/CloudStorageClass.dart';
 import 'package:complaints_app/Models/ComplaintClass.dart';
 import 'package:complaints_app/Services/Database.dart';
-import 'package:complaints_app/Utility/ImageConvert.dart';
+import 'package:complaints_app/Services/StorageService.dart';
+//import 'package:complaints_app/Utility/ImageConvert.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -93,7 +95,7 @@ class _NewComplaintState extends State<NewComplaint> {
                 _image == null
                     ? FlatButton.icon(
                         onPressed: () {
-                          getImage();
+                          getImage(widget.userID);
                           setState(() {
                             _error = '';
                           });
@@ -140,6 +142,7 @@ class _NewComplaintState extends State<NewComplaint> {
                       if (_image != null) {
                         _complaintsClass.title = _title;
                         _complaintsClass.description = _description;
+                        print(_img);
                         _complaintsClass.image = _img;
                         DatabaseService databaseService = DatabaseService(
                             widget.userID, _complaintsClass.toMap());
@@ -167,11 +170,15 @@ class _NewComplaintState extends State<NewComplaint> {
     );
   }
 
-  Future getImage() async {
+  Future getImage(String id) async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    _image = File(pickedFile.path);
+    //_img = Utility.base64String(_image.readAsBytesSync());
+    CloudStorageService cloudStorageService = CloudStorageService(id, _image);
+    CloudStorageResult result = await cloudStorageService.uploadImage();
+    print('NewComplaint Instance is of type ${result.imageURL}');
     setState(() {
-      _image = File(pickedFile.path);
+      _img = result.imageURL;
     });
-    _img = Utility.base64String(_image.readAsBytesSync());
   }
 }
